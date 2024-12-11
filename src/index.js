@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -7,8 +8,7 @@ app.use(express.json());
 app.use(cors({ origin: "http://localhost:3000" })); // Update as needed for production
 
 // MongoDB Atlas connection
-const mongoURI =
-  "mongodb+srv://2800misbahuddin:jjN76HsLQ7FbaeSG@cluster0.k3ybo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const mongoURI = process.env.MONGO_URI;
 
 mongoose
   .connect(mongoURI, { serverSelectionTimeoutMS: 10000 })
@@ -65,7 +65,7 @@ app.post("/counter", async (req, res) => {
 });
 
 // Start the server
-const PORT = 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
