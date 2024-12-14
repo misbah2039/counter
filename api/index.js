@@ -1,4 +1,4 @@
-require("dotenv").config();
+// require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -9,7 +9,7 @@ app.use(cors({ origin: "http://localhost:3000" })); // Update as needed for prod
 
 // MongoDB Atlas connection
 const mongoURI = process.env.MONGO_URI;
-
+console.log(mongoURI);
 mongoose
   .connect(mongoURI, { serverSelectionTimeoutMS: 10000 })
   .then(() => console.log("Connected to MongoDB Atlas"))
