@@ -6,7 +6,7 @@ const helmet = require("helmet");
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: "https://billandattendancestatus.netlify.app" }));
 
 // Set CSP Headers
 app.use(
@@ -58,6 +58,7 @@ mongoose.connection.once("open", async () => {
 // Routes
 app.get("/", (req, res) => res.status(200).send("Welcome to the Counter API!"));
 app.get("/counter", async (req, res) => {
+  console.log("inside get counter");
   try {
     const counter = await Counter.findOne({ name: "visitorCounter" });
     res.status(200).json({ count: counter ? counter.count : 0 });
@@ -66,6 +67,7 @@ app.get("/counter", async (req, res) => {
   }
 });
 app.post("/counter", async (req, res) => {
+  console.log("inside post counter");
   try {
     const updatedCounter = await Counter.findOneAndUpdate(
       { name: "visitorCounter" },
